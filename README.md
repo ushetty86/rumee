@@ -1,260 +1,284 @@
-# Rumee - AI-Powered Assistant
+# Rumee - AI-Powered Personal Assistant 🧠
 
-A comprehensive AI-driven assistant application designed to help users manage notes, meetings, people, and reminders with automatic data linking and intelligent summarization.
+**Intelligent note-taking and personal knowledge management with local AI**
 
-## Features
+Rumee is your AI-powered assistant that automatically organizes notes, tracks people and meetings, creates reminders, and discovers connections across all your data - running completely locally with Ollama.
 
-### 📝 **Smart Note-Taking**
-- Create and organize notes with automatic tagging
-- AI-powered entity extraction (people, dates, topics, locations)
-- Automatic linking to related notes, people, and meetings
-- Full-text search capabilities
-- Note embeddings for semantic similarity
+## ✨ Key Features
 
-### 👥 **People Management**
-- Track people you meet and interact with
-- Store contact information and meeting history
-- Automatic linking to relevant notes and conversations
-- Company and role tracking
-- Custom tags for organization
+### 🤖 **Intelligent Background Processing**
+- **Automatic entity extraction** from notes (people, topics, organizations, locations, tasks)
+- **Auto-creates people entries** when you mention someone
+- **Auto-creates reminders** when you write about tasks
+- **Zero manual effort** - just write naturally
 
-### 📅 **Meeting Scheduler**
+### 🧠 **Knowledge Graph**
+- **Visual mind map** of all your data connections
+- **Neo4j graph database** for relationship tracking
+- **Discover hidden patterns** across notes, people, and meetings
+- **Brain-like correlation** of information
+
+### 💬 **Ask AI**
+- **Natural language queries** over all your data
+- "Who have I met about project X?"
+- "What tasks are pending?"
+- "Summarize my week"
+
+### 📝 **Smart Notes**
+- Automatic topic extraction
+- Semantic search and similarity
+- Linked to people, meetings, and tasks
+- AI-powered insights
+
+### 👥 **People & Contacts**
+- Auto-populated from note mentions
+- Track interactions and meetings
+- Relationship context and history
+
+### 📅 **Meetings & Reminders**
 - Schedule and document meetings
-- Automatic action item extraction
-- Attendee management with linking to person profiles
-- Meeting notes with AI-powered summarization
-- Integration with reminders system
+- Task tracking and follow-ups
+- Priority management
 
-### 🔔 **Smart Reminders**
-- Task reminders with priority levels
-- Meeting preparation reminders
-- Follow-up reminders linked to people
-- Automatic reminder generation from meeting action items
-- Daily digest of upcoming tasks
+### 📊 **Insights**
+- Daily and weekly summaries
+- Activity analytics
+- Connection discovery
 
-### 📊 **Daily & Weekly Summaries**
-- AI-generated daily summaries of activities
-- Weekly reports with key topics and action items
-- Aggregated insights from notes, meetings, and tasks
-- Email digest support
-- Customizable summary preferences
+## 🏗️ Tech Stack
 
-### 🔗 **Automatic Data Linking**
-- AI analyzes all content to find connections
-- Links notes to people mentioned in them
-- Connects meetings to related notes
-- Creates reminders from meeting action items
-- Semantic similarity matching using embeddings
-- One-click access to related information
+### Core Technologies
+- **Backend**: FastAPI (Python) on port 8000
+- **Frontend**: Streamlit (Python) on port 8501
+- **AI Engine**: Ollama (100% local, privacy-first)
+  - `llama3.2:latest` for chat and analysis
+  - `embeddinggemma:latest` for semantic embeddings
+- **Graph Database**: Neo4j (optional, graceful fallback)
+- **Storage**: In-memory (test mode) or MongoDB (optional)
 
-### 🤖 **AI Engine**
-- GPT-3.5/GPT-4 integration for content analysis
-- Entity extraction from unstructured text
-- Semantic similarity and connection finding
-- Automatic summarization
-- Action item generation
+### Why This Stack?
+- ✅ **No API keys required** - completely local AI
+- ✅ **No cloud costs** - runs on your machine
+- ✅ **Complete privacy** - your data stays local
+- ✅ **Fast development** - pure Python, no separate frontend
+- ✅ **Background intelligence** - AI works while you type
 
-## Architecture
+## 🚀 Quick Start
 
-### Backend
-- **Framework**: Express.js with TypeScript
-- **Database**: MongoDB
-- **AI Integration**: OpenAI API
-- **Authentication**: JWT
-- **Logging**: Winston
+### Prerequisites
 
-### Frontend
-- **Framework**: React 18 with TypeScript
-- **State Management**: Zustand
-- **Styling**: Tailwind CSS
-- **HTTP Client**: Axios
-- **Data Fetching**: React Query
+```bash
+# 1. Install Python 3.9+
+python3 --version
 
-### Core Services
-- **AIService**: LLM integrations for analysis and generation
-- **DataLinkingService**: Automatic connection finding
-- **SummaryService**: Daily and weekly report generation
+# 2. Install Ollama (macOS)
+curl -fsSL https://ollama.com/install.sh | sh
 
-## Project Structure
+# 3. Pull AI models
+ollama pull llama3.2:latest
+ollama pull embeddinggemma:latest
+
+# 4. (Optional) Install Neo4j
+brew install --cask neo4j
+# Or use Docker: docker run -p 7474:7474 -p 7687:7687 neo4j
+```
+
+### Installation
+
+```bash
+# 1. Clone and setup
+git clone https://github.com/yourusername/rumee.git
+cd rumee
+chmod +x setup.sh
+./setup.sh
+
+# 2. Configure (optional - works with defaults)
+# Edit backend/.env if you want to change ports or add MongoDB
+
+# 3. Start the app
+chmod +x start.sh
+./start.sh
+```
+
+**Access the app:**
+- 🌐 **UI**: http://localhost:8501
+- 🔧 **API**: http://localhost:8000
+- 📚 **API Docs**: http://localhost:8000/docs
+
+## 📖 Usage
+
+### 1. Create Your First Note
+```
+Met with Sarah Johnson about the Q4 marketing campaign. 
+Need to send her the budget proposal by Friday.
+Also discussed partnership with Acme Corp.
+```
+
+**What happens automatically:**
+- ✅ Creates person entry for "Sarah Johnson"
+- ✅ Extracts topic "Q4 marketing campaign"
+- ✅ Identifies organization "Acme Corp"
+- ✅ Creates reminder "Send budget proposal to Sarah by Friday"
+- ✅ Adds everything to knowledge graph
+- ✅ Generates embeddings for semantic search
+
+### 2. Ask AI Questions
+```
+"What did I discuss with Sarah?"
+"What tasks are due this week?"
+"Who have I met about marketing?"
+```
+
+The AI searches across all your notes, people, and reminders using semantic understanding.
+
+### 3. Explore Knowledge Graph
+See visual connections between:
+- Notes ↔ People mentioned
+- Notes ↔ Topics discussed
+- Notes ↔ Organizations involved
+- Notes ↔ Locations mentioned
+
+## 🛠️ Manual Start
+
+```bash
+# Terminal 1 - Backend API
+source venv/bin/activate
+python backend/test_server.py
+
+# Terminal 2 - Streamlit UI
+source venv/bin/activate
+streamlit run app.py
+```
+
+## 📂 Project Structure
 
 ```
 rumee/
+├── app.py                          # Streamlit frontend (7 pages)
 ├── backend/
-│   ├── src/
-│   │   ├── models/          # MongoDB models
-│   │   ├── routes/          # API routes
-│   │   ├── controllers/      # Route handlers
-│   │   ├── services/        # Business logic
-│   │   ├── middleware/      # Express middleware
-│   │   ├── config/          # Configuration
-│   │   ├── utils/           # Utilities
-│   │   └── index.ts         # Entry point
-│   ├── package.json
-│   └── tsconfig.json
-├── frontend/
-│   ├── src/
-│   │   ├── components/      # Reusable components
-│   │   ├── pages/           # Page components
-│   │   ├── services/        # API services
-│   │   ├── utils/           # Utilities & stores
-│   │   ├── styles/          # Global styles
-│   │   ├── App.tsx
-│   │   └── index.tsx
-│   ├── public/
-│   ├── package.json
-│   └── tsconfig.json
-├── shared/
-│   └── types/               # Shared TypeScript types
-└── docs/
-    └── API.md              # API documentation
+│   ├── test_server.py             # FastAPI server with Ollama
+│   ├── config/
+│   │   ├── settings.py            # Configuration
+│   │   └── database.py            # MongoDB setup (optional)
+│   ├── services/
+│   │   ├── ai_service.py          # Ollama integration
+│   │   ├── background_processor.py # Automatic AI processing
+│   │   ├── neo4j_service.py       # Graph database
+│   │   ├── knowledge_graph_service.py
+│   │   └── data_linking_service.py
+│   ├── models/                    # Data models
+│   └── routes/                    # API endpoints
+├── requirements.txt               # Python dependencies
+├── setup.sh                       # One-command setup
+└── start.sh                       # Start both servers
 ```
 
-## Getting Started
+## 🔧 Configuration
 
-### Prerequisites
-- Node.js 16+
-- MongoDB (local or Atlas)
-- OpenAI API key
-
-### Backend Setup
-
-1. Install dependencies:
-```bash
-cd backend
-npm install
-```
-
-2. Configure environment:
-```bash
-cp .env.example .env
-# Edit .env with your configuration
-```
-
-3. Start development server:
-```bash
-npm run dev
-```
-
-### Frontend Setup
-
-1. Install dependencies:
-```bash
-cd frontend
-npm install
-```
-
-2. Start development server:
-```bash
-npm start
-```
-
-The app will open at `http://localhost:3000`
-
-## API Endpoints
-
-### Notes
-- `GET /api/notes` - Get all notes
-- `POST /api/notes` - Create note
-- `PUT /api/notes/:id` - Update note
-- `DELETE /api/notes/:id` - Delete note
-
-### People
-- `GET /api/people` - Get all people
-- `POST /api/people` - Add person
-- `PUT /api/people/:id` - Update person
-- `DELETE /api/people/:id` - Delete person
-
-### Meetings
-- `GET /api/meetings` - Get all meetings
-- `POST /api/meetings` - Create meeting
-- `PUT /api/meetings/:id` - Update meeting
-- `DELETE /api/meetings/:id` - Delete meeting
-
-### Reminders
-- `GET /api/reminders` - Get reminders
-- `POST /api/reminders` - Create reminder
-- `PUT /api/reminders/:id` - Update reminder
-- `DELETE /api/reminders/:id` - Delete reminder
-
-### Summaries
-- `GET /api/summaries/daily` - Get daily summary
-- `GET /api/summaries/weekly` - Get weekly summary
-
-## Configuration
-
-### Environment Variables
-
-#### Backend (.env)
-- `NODE_ENV` - Development/production mode
-- `PORT` - Server port (default: 5000)
-- `MONGODB_URI` - MongoDB connection string
-- `JWT_SECRET` - JWT signing secret
-- `OPENAI_API_KEY` - OpenAI API key
-- `CORS_ORIGIN` - CORS allowed origin
-
-#### Frontend (.env)
-- `REACT_APP_API_URL` - Backend API URL
-
-## Data Linking Algorithm
-
-The app uses a multi-step approach to link data:
-
-1. **Entity Extraction**: AI extracts people, dates, topics, and locations
-2. **Direct Matching**: Links to matching person/entity names
-3. **Semantic Similarity**: Uses embeddings to find conceptually related items
-4. **Scoring**: Connections above 0.6 similarity threshold are linked
-5. **Bidirectional Linking**: Links are created in both directions for easy navigation
-
-## Development Workflow
-
-### Adding a New Feature
-
-1. Create models in `backend/src/models/`
-2. Create services in `backend/src/services/`
-3. Create controllers in `backend/src/controllers/`
-4. Add routes in `backend/src/routes/`
-5. Create frontend components in `frontend/src/components/`
-6. Add API methods in `frontend/src/services/api.ts`
-7. Create store state in `frontend/src/utils/store.ts` if needed
-
-### Building
+### Environment Variables (`backend/.env`)
 
 ```bash
-# Backend
-cd backend
-npm run build
+# AI Models (using Ollama - local)
+OLLAMA_MODEL=llama3.2:latest
+OLLAMA_EMBEDDING_MODEL=embeddinggemma:latest
+OLLAMA_BASE_URL=http://localhost:11434
 
-# Frontend
-cd frontend
-npm run build
+# Neo4j (optional)
+NEO4J_URI=bolt://localhost:7687
+NEO4J_USER=neo4j
+NEO4J_PASSWORD=neo4j123
+
+# MongoDB (optional - for persistence)
+MONGODB_URI=mongodb://localhost:27017/rumee
+
+# Server Config
+PORT=8000
+JWT_SECRET=your-secret-key-here
 ```
 
-## Deployment
+## 🎯 How It Works
 
-### Backend
-Deploy to Heroku, AWS, or any Node.js hosting platform
+### Background Processing Pipeline
+
+1. **User creates note** → Sent to FastAPI backend
+2. **Queued for processing** → Async background processor
+3. **AI extracts entities** → Ollama analyzes content
+4. **Auto-creates related data**:
+   - People entries from names
+   - Reminders from tasks
+   - Topics, organizations, locations
+5. **Generates embeddings** → For semantic search
+6. **Updates knowledge graph** → Neo4j or in-memory
+7. **Returns to user** → With AI insights
+
+### Graceful Fallbacks
+
+- **No Neo4j?** → Uses in-memory graph
+- **No MongoDB?** → Uses in-memory dictionaries
+- **Ollama offline?** → Graceful error messages
+
+## 🐛 Troubleshooting
+
+### Ollama Not Running
 ```bash
-npm run build
-npm start
+# Check Ollama status
+ollama list
+
+# Restart Ollama
+brew services restart ollama
 ```
 
-### Frontend
-Build static files and deploy to Vercel, Netlify, or similar
+### Neo4j Connection Issues
 ```bash
-npm run build
+# The app works without Neo4j (uses fallback)
+# To start Neo4j:
+neo4j start
+# Or use Docker:
+docker run -p 7474:7474 -p 7687:7687 neo4j
 ```
 
-## Contributing
+### Port Conflicts
+```bash
+# Change backend port in backend/.env:
+PORT=8001
 
-1. Create a feature branch
-2. Make your changes
-3. Test thoroughly
-4. Submit a pull request
+# Change Streamlit port:
+streamlit run app.py --server.port 8502
+```
 
-## License
+### AsyncIO Warnings
+These are harmless warnings from the background processor. The app works perfectly despite them.
 
-MIT
+## 🚀 What Makes This Special?
 
-## Support
+1. **True Intelligence**: Not just storage - actual AI that understands and connects your information
+2. **Zero Effort**: Write naturally, AI does the organization
+3. **Privacy First**: All AI runs locally on your machine
+4. **No Costs**: No API fees, no subscriptions
+5. **Real Knowledge Graph**: See how everything connects like your brain does
+6. **Background Processing**: AI works while you focus on writing
 
-For issues and feature requests, please create an issue on the repository.
+## 📚 Additional Documentation
+
+- [ARCHITECTURE.md](docs/ARCHITECTURE.md) - System design and patterns
+- [API.md](docs/API.md) - Complete API reference
+- [CONTRIBUTING.md](CONTRIBUTING.md) - Development guidelines
+- [DEPLOYMENT.md](DEPLOYMENT.md) - Production deployment guide
+- [ROADMAP.md](ROADMAP.md) - Future features and plans
+
+## 🤝 Contributing
+
+Contributions welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) first.
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) for details
+
+## 🎉 Getting Help
+
+- 📧 Issues: [GitHub Issues](https://github.com/yourusername/rumee/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/rumee/discussions)
+
+---
+
+**Built with ❤️ using Python, Ollama, and FastAPI**

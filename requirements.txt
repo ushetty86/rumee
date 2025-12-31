@@ -1,0 +1,4 @@
+# Rumee Frontend - Streamlit Requirements
+
+streamlit==1.41.0
+requests==2.32.3

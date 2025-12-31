@@ -1,0 +1,34 @@
+# Rumee Backend - Python Requirements
+
+# Web Framework
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+python-multipart==0.0.18
+
+# Database
+motor==3.6.0
+beanie==1.27.0
+pymongo==4.9.0
+neo4j==5.28.2
+
+# Authentication
+pyjwt==2.10.0
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+
+# AI & ML
+ollama==0.6.1
+numpy==2.0.2
+tiktoken==0.8.0
+
+# Utilities
+python-dotenv==1.0.1
+pydantic-settings==2.7.0
+pydantic==2.10.3
+
+# HTTP Client
+httpx==0.27.2
+requests==2.32.3
+
+# Date/Time
+python-dateutil==2.9.0.post0
